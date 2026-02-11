@@ -1,3 +1,8 @@
+import {
+  CardSkeleton,
+  RowSkeleton,
+  RowSkeletonContainer
+} from '@/components/dashboard/skeleton';
 import { simulateLoading } from '@/utils/simulation';
 import { SquarePen, Trash2 } from 'lucide-react';
 import { Metadata } from 'next';
@@ -8,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default async function DashboardPage() {
-  await simulateLoading();
+  // await simulateLoading();
   return (
     <main className="p-8 space-y-8">
       {/* OVERVIEW */}
@@ -17,7 +22,7 @@ export default async function DashboardPage() {
           <h3 className="text-gray-500">Total</h3>
           <h2 className="text-center font-medium text-3xl">22</h2>
         </div>
-        <div className="bg-blue-500 ">2</div>
+        <CardSkeleton />
         <div className="bg-green-500 ">3</div>
       </section>
 
@@ -45,7 +50,7 @@ export default async function DashboardPage() {
               </div>
             </div>
           </div>
-          <div>2</div>
+          <RowSkeletonContainer />
           <div>3</div>
         </div>
       </section>
