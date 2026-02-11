@@ -3,6 +3,7 @@ import {
   RowSkeleton,
   RowSkeletonContainer
 } from '@/components/dashboard/skeleton';
+import TodoList from '@/components/todo/todo-list';
 import { simulateLoading } from '@/utils/simulation';
 import { SquarePen, Trash2 } from 'lucide-react';
 import { Metadata } from 'next';
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
 
 export default async function DashboardPage() {
   // await simulateLoading();
+  // await getAllTodo
   return (
     <main className="p-8 space-y-8">
       {/* OVERVIEW */}
@@ -29,30 +31,7 @@ export default async function DashboardPage() {
       {/* LATEST TODO */}
       <section className="bg-white p-8 rounded-2xl grid gap-8">
         <h1 className="text-2xl font-semibold">Latest Todo</h1>
-        <div className="border-y border-gray-200 divide-y divide-gray-200">
-          <div className="flex justify-between items-center p-4">
-            <h4>React Exam</h4>
-            <div className="flex items-center gap-12">
-              <div className="bg-green-500 text-white text-xs px-2 py-0.5 rounded-lg">
-                Completed
-              </div>
-              <div className="flex items-center gap-2">
-                <Link
-                  href="todo/xxx/edit"
-                  className="border border-gray-200 p-2 rounded-lg text-blue-500 hover:bg-blue-50"
-                >
-                  <SquarePen />
-                </Link>
-
-                <button className="border border-gray-200 p-2 rounded-lg text-red-500 hover:bg-red-50">
-                  <Trash2 />
-                </button>
-              </div>
-            </div>
-          </div>
-          <RowSkeletonContainer />
-          <div>3</div>
-        </div>
+        <TodoList />
       </section>
     </main>
   );
