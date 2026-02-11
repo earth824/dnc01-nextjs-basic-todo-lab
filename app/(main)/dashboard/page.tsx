@@ -1,3 +1,4 @@
+import { simulateLoading } from '@/utils/simulation';
 import { SquarePen, Trash2 } from 'lucide-react';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -6,7 +7,8 @@ export const metadata: Metadata = {
   title: 'Dashboard'
 };
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  await simulateLoading();
   return (
     <main className="p-8 space-y-8">
       {/* OVERVIEW */}

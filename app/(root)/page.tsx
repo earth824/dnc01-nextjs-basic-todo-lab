@@ -1,3 +1,4 @@
+import { simulateLoading } from '@/utils/simulation';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -6,7 +7,8 @@ export const metadata: Metadata = {
   title: 'Home'
 };
 
-export default function Home() {
+export default async function Home() {
+  await simulateLoading();
   return (
     <main className="flex flex-col justify-center items-center gap-8 min-h-screen">
       <Image src="/logo.png" alt="Basic Todo" width={120} height={120} />
