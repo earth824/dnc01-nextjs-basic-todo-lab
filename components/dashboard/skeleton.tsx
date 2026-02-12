@@ -7,6 +7,16 @@ export function CardSkeleton() {
   );
 }
 
+export function CardSkeletonContainer() {
+  return (
+    <section className="grid grid-cols-3 gap-8">
+      <CardSkeleton />
+      <CardSkeleton />
+      <CardSkeleton />
+    </section>
+  );
+}
+
 export function RowSkeleton() {
   return (
     <div className="flex justify-between items-center p-4 animate-pulse">
