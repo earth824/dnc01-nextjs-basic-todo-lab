@@ -1,4 +1,5 @@
 import { RowSkeletonContainer } from '@/components/dashboard/skeleton';
+import TodoList from '@/components/todo/todo-list';
 import { Plus } from 'lucide-react';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -27,7 +28,8 @@ export default async function TodoPage() {
           className="outline-none border border-gray-200 w-full px-3 py-1.5 rounded-lg h-9"
         />
 
-        <RowSkeletonContainer />
+        {/* <RowSkeletonContainer /> */}
+        <TodoList />
       </div>
     </main>
   );
