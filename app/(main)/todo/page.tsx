@@ -1,8 +1,9 @@
 import { RowSkeletonContainer } from '@/components/dashboard/skeleton';
 import TodoList from '@/components/todo/todo-list';
 import { Plus } from 'lucide-react';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import Link from 'next/link';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: 'Todo'
@@ -28,8 +29,9 @@ export default async function TodoPage() {
           className="outline-none border border-gray-200 w-full px-3 py-1.5 rounded-lg h-9"
         />
 
-        {/* <RowSkeletonContainer /> */}
-        <TodoList />
+        <Suspense fallback={<RowSkeletonContainer />}>
+          <TodoList />
+        </Suspense>
       </div>
     </main>
   );

@@ -1,4 +1,5 @@
 import type { Todo } from '@/types/todo';
+import { cn } from '@/utils/cn';
 import { convertFirstCharToUpperCase } from '@/utils/format-string';
 import { SquarePen, Trash2 } from 'lucide-react';
 import Link from 'next/link';
@@ -15,7 +16,12 @@ export default function TodoItem({
     <div className="flex justify-between items-center p-4">
       <h4>{title}</h4>
       <div className="flex items-center gap-12">
-        <div className="bg-green-500 text-white text-xs px-2 py-0.5 rounded-lg">
+        <div
+          className={cn(
+            'bg-green-500 text-white text-xs px-2 py-0.5 rounded-lg',
+            status === 'pending' && 'bg-red-500'
+          )}
+        >
           {convertFirstCharToUpperCase(status)}
         </div>
         {showAction && (
