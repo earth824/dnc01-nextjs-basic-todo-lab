@@ -20,6 +20,21 @@ export default function Header() {
         <Link href="/todo" className="px-5 py-2.5 rounded-lg hover:bg-gray-100">
           Todo
         </Link>
+        <button className="px-5 py-2.5 rounded-lg hover:bg-gray-100">
+          Logout
+        </button>
+        <Link
+          href="/login"
+          className="px-5 py-2.5 rounded-lg hover:bg-gray-100"
+        >
+          Login
+        </Link>
+        <Link
+          href="/register"
+          className="px-5 py-2.5 rounded-lg hover:bg-gray-100"
+        >
+          Register
+        </Link>
       </nav>
     </header>
   );
