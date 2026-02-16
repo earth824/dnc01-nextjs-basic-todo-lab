@@ -1,5 +1,5 @@
 import { prisma } from '@/libs/db/prisma';
-import type { TodoStatus } from '@/types/todo';
+import type { Todo, TodoStatus } from '@/types/todo';
 import { simulateLoading } from '@/utils/simulation';
 
 export const getAllTodo = async () => {
@@ -26,4 +26,8 @@ export const countTodoGroupByStatus = async () => {
   );
 
   return result;
+};
+
+export const getTodoById = (id: Todo['id']) => {
+  return prisma.todo.findUnique({ where: { id } });
 };
