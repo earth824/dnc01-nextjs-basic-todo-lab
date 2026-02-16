@@ -1,9 +1,11 @@
 'use server';
 
+import { signIn } from '@/libs/auth';
 import { PrismaClientKnownRequestError } from '@/libs/db/generated/prisma/internal/prismaNamespace';
 import { prisma } from '@/libs/db/prisma';
 import {
   registerExcludeConfirmSchema,
+  type LoginInput,
   type RegisterInput
 } from '@/libs/schemas/auth';
 import type { ServerFunctionResponse } from '@/types/response';
@@ -29,4 +31,19 @@ export const createUser = async (
     throw err;
   }
   redirect('/login');
+};
+
+export const login = async (
+  input: LoginInput
+): Promise<ServerFunctionResponse> => {
+  try {
+    await signIn('credentials', { ...input, redirect: false });
+  } catch {
+    return {
+      success: false,
+      code: 'INVALID_CREDENTIALS',
+      message: 'Email or password incorrect'
+    };
+  }
+  redirect('/dashboard');
 };

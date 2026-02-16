@@ -1,4 +1,4 @@
-type ErrorCode = 'VALIDATION_ERROR' | 'DUPLICATE_EMAIL';
+type ErrorCode = 'VALIDATION_ERROR' | 'DUPLICATE_EMAIL' | 'INVALID_CREDENTIALS';
 
 type ErrorReponse = {
   success: false;
