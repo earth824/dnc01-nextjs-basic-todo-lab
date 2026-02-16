@@ -10,11 +10,13 @@ import { useForm } from 'react-hook-form';
 type TodoFormProps = {
   submitLabel?: string;
   defaultValues?: TodoInput;
+  onSubmitAction: (input: TodoInput) => Promise<void>;
 };
 
 export default function TodoForm({
   submitLabel = 'Create',
-  defaultValues = { title: '', status: 'pending' }
+  defaultValues = { title: '', status: 'pending' },
+  onSubmitAction
 }: TodoFormProps) {
   const {
     register,
@@ -29,7 +31,7 @@ export default function TodoForm({
 
   const onSubmit = (data: TodoInput) => {
     startTranstion(async () => {
-      await createTodo(data);
+      await onSubmitAction(data);
     });
   };
 

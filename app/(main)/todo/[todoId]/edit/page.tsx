@@ -1,4 +1,5 @@
 import TodoForm from '@/components/todo/todo-form';
+import { updateTodo } from '@/libs/actions/todo';
 import { getTodoById } from '@/libs/data/todo';
 import { positiveIntSchema } from '@/libs/schemas/common';
 import { Undo2 } from 'lucide-react';
@@ -36,8 +37,21 @@ export default async function EditTodoPage({
             <Undo2 />
           </Link>
         </div>
-        <TodoForm submitLabel="Update" defaultValues={todo} />
+        <TodoForm
+          submitLabel="Update"
+          defaultValues={todo}
+          onSubmitAction={updateTodo.bind(null, id)}
+        />
       </div>
     </main>
   );
 }
+
+// bind
+// const test = (a, b, c) => { console.log(this); console.log(a) }
+// const bindTest = test.bind(null, 'something')
+// similar to (b, c) => { console.log(null); console.log('something') }
+// test() ==> console.log(window)
+// bindTest() ==> console.log(null)
+// test(55) ==> console.log(window); console.log(55)
+// bindTest() ==> console.log(null); console.log('something')

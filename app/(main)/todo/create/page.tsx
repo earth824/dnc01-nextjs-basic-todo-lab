@@ -1,4 +1,5 @@
 import TodoForm from '@/components/todo/todo-form';
+import { createTodo } from '@/libs/actions/todo';
 import { Undo2 } from 'lucide-react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
@@ -20,7 +21,7 @@ export default function CreateTodoPage() {
             <Undo2 />
           </Link>
         </div>
-        <TodoForm />
+        <TodoForm onSubmitAction={createTodo} />
       </div>
     </main>
   );
