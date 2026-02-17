@@ -27,3 +27,10 @@ export const updateTodo = async (todoId: Todo['id'], input: TodoInput) => {
   revalidatePath('/todo');
   redirect('/todo');
 };
+
+export const deleteTodo = async (todoId: Todo['id']) => {
+  const id = positiveIntSchema.parse(todoId);
+  const user = await getAuthenticatedUser();
+  await prisma.todo.delete({ where: { id, userId: user.id } });
+  revalidatePath('/todo');
+};

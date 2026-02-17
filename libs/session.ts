@@ -1,5 +1,4 @@
 import { auth } from '@/libs/auth';
-import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
 import z from 'zod';
 

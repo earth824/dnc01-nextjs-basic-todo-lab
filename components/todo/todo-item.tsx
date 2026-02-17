@@ -1,7 +1,8 @@
+import DeleteButton from '@/components/todo/delete-button';
 import type { Todo } from '@/types/todo';
 import { cn } from '@/utils/cn';
 import { convertFirstCharToUpperCase } from '@/utils/format-string';
-import { SquarePen, Trash2 } from 'lucide-react';
+import { SquarePen } from 'lucide-react';
 import Link from 'next/link';
 
 type TodoItemProps = Todo & { showAction?: boolean };
@@ -32,10 +33,7 @@ export default function TodoItem({
             >
               <SquarePen />
             </Link>
-
-            <button className="border border-gray-200 p-2 rounded-lg text-red-500 hover:bg-red-50">
-              <Trash2 />
-            </button>
+            <DeleteButton id={id} />
           </div>
         )}
       </div>
