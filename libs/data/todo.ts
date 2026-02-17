@@ -1,17 +1,23 @@
 import { prisma } from '@/libs/db/prisma';
+import { getAuthenticatedUser } from '@/libs/session';
 import type { Todo, TodoStatus } from '@/types/todo';
-import { simulateLoading } from '@/utils/simulation';
 
 export const getAllTodo = async () => {
-  const todos = await prisma.todo.findMany({ orderBy: { updatedAt: 'desc' } });
+  const user = await getAuthenticatedUser();
+  const todos = await prisma.todo.findMany({
+    orderBy: { updatedAt: 'desc' },
+    where: { userId: user.id }
+  });
   return todos;
 };
 
 export const countTodoGroupByStatus = async () => {
-  await simulateLoading();
+  const user = await getAuthenticatedUser();
+
   const data = await prisma.todo.groupBy({
     by: 'status',
-    _count: true
+    _count: true,
+    where: { userId: user.id }
   });
 
   const result = data.reduce<Record<TodoStatus, number>>(
@@ -28,6 +34,7 @@ export const countTodoGroupByStatus = async () => {
   return result;
 };
 
-export const getTodoById = (id: Todo['id']) => {
-  return prisma.todo.findUnique({ where: { id } });
+export const getTodoById = async (id: Todo['id']) => {
+  const user = await getAuthenticatedUser();
+  return prisma.todo.findUnique({ where: { id, userId: user.id } });
 };

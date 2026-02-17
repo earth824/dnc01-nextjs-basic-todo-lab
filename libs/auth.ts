@@ -21,5 +21,11 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         return { id: user.id.toString(), email };
       }
     })
-  ]
+  ],
+  callbacks: {
+    session({ token, session }) {
+      session.user.id = token.sub;
+      return session;
+    }
+  }
 });
