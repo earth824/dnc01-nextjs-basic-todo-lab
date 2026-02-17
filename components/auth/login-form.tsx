@@ -1,9 +1,14 @@
 'use client';
 
-import { login } from '@/libs/actions/auth';
+// import { login } from '@/libs/actions/auth';
 import { loginSchema, type LoginInput } from '@/libs/schemas/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader } from 'lucide-react';
+import {
+  signIn
+  // , useSession
+} from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -19,13 +24,30 @@ export default function LoginForm() {
   });
 
   const [isPending, startTransition] = useTransition();
+  const router = useRouter();
+  // const { update } = useSession();
 
   const onSubmit = (data: LoginInput) => {
     startTransition(async () => {
-      const result = await login(data);
-      if (!result.success) {
-        setError('root', { message: result.message });
+      // const result = await login(data);
+      // if (!result.success) {
+      //   setError('root', { message: result.message });
+      //   return;
+      // }
+      // await update();
+      // router.push('/dashboard');
+
+      const { error } = await signIn('credentials', {
+        ...data,
+        redirect: false
+      });
+
+      if (error) {
+        setError('root', { message: 'Invalid email or password' });
+        return;
       }
+
+      router.push('/dashboard');
     });
   };
 

@@ -1,5 +1,6 @@
 import '@/app/globals.css';
 import type { Metadata } from 'next';
+import { SessionProvider } from 'next-auth/react';
 import { Roboto } from 'next/font/google';
 
 const roboto = Roboto();
@@ -19,7 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased ${roboto.className}`}>{children}</body>
+      <body className={`antialiased ${roboto.className}`}>
+        <SessionProvider>{children}</SessionProvider>
+      </body>
     </html>
   );
 }

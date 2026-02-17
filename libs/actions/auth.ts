@@ -45,5 +45,6 @@ export const login = async (
       message: 'Email or password incorrect'
     };
   }
-  redirect('/dashboard');
+  // redirect('/dashboard');
+  return { success: true };
 };

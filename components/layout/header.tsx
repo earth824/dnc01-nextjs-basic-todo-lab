@@ -1,3 +1,4 @@
+import Menu from '@/components/layout/menu';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -10,32 +11,7 @@ export default function Header() {
           <h2 className="text-3xl text-blue-500 font-bold">Basic Todo</h2>
         </div>
       </Link>
-      <nav className="space-x-4">
-        <Link
-          href="/dashboard"
-          className="px-5 py-2.5 rounded-lg hover:bg-gray-100"
-        >
-          Dashboard
-        </Link>
-        <Link href="/todo" className="px-5 py-2.5 rounded-lg hover:bg-gray-100">
-          Todo
-        </Link>
-        <button className="px-5 py-2.5 rounded-lg hover:bg-gray-100">
-          Logout
-        </button>
-        <Link
-          href="/login"
-          className="px-5 py-2.5 rounded-lg hover:bg-gray-100"
-        >
-          Login
-        </Link>
-        <Link
-          href="/register"
-          className="px-5 py-2.5 rounded-lg hover:bg-gray-100"
-        >
-          Register
-        </Link>
-      </nav>
+      <Menu />
     </header>
   );
 }
